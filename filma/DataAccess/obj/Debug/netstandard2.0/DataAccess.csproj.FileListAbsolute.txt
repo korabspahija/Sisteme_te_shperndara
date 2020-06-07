@@ -1,0 +1,8 @@
+C:\Users\Admin\Documents\GitHub\Sisteme_te_shperndara\filma\DataAccess\bin\Debug\netstandard2.0\DataAccess.deps.json
+C:\Users\Admin\Documents\GitHub\Sisteme_te_shperndara\filma\DataAccess\bin\Debug\netstandard2.0\DataAccess.dll
+C:\Users\Admin\Documents\GitHub\Sisteme_te_shperndara\filma\DataAccess\obj\Debug\netstandard2.0\DataAccess.csprojAssemblyReference.cache
+C:\Users\Admin\Documents\GitHub\Sisteme_te_shperndara\filma\DataAccess\obj\Debug\netstandard2.0\DataAccess.AssemblyInfoInputs.cache
+C:\Users\Admin\Documents\GitHub\Sisteme_te_shperndara\filma\DataAccess\obj\Debug\netstandard2.0\DataAccess.AssemblyInfo.cs
+C:\Users\Admin\Documents\GitHub\Sisteme_te_shperndara\filma\DataAccess\bin\Debug\netstandard2.0\DataAccess.pdb
+C:\Users\Admin\Documents\GitHub\Sisteme_te_shperndara\filma\DataAccess\obj\Debug\netstandard2.0\DataAccess.dll
+C:\Users\Admin\Documents\GitHub\Sisteme_te_shperndara\filma\DataAccess\obj\Debug\netstandard2.0\DataAccess.pdb
