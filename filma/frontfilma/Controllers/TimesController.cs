@@ -12,48 +12,48 @@ namespace frontfilma.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class TimesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public UsersController(ApplicationDbContext context)
+        public TimesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Users
+        // GET: api/Times
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<Time>>> GetTimes()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Times.ToListAsync();
         }
 
-        // GET: api/Users/5
+        // GET: api/Times/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Users>> GetUsers(int id)
+        public async Task<ActionResult<Time>> GetTime(int id)
         {
-            var users = await _context.Users.FindAsync(id);
+            var time = await _context.Times.FindAsync(id);
 
-            if (users == null)
+            if (time == null)
             {
                 return NotFound();
             }
 
-            return users;
+            return time;
         }
 
-        // PUT: api/Users/5
+        // PUT: api/Times/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsers(int id, Users users)
+        public async Task<IActionResult> PutTime(int id, Time time)
         {
-            if (id != users.Id)
+            if (id != time.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(users).State = EntityState.Modified;
+            _context.Entry(time).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace frontfilma.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UsersExists(id))
+                if (!TimeExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace frontfilma.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
+        // POST: api/Times
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Users>> PostUsers([FromBody]Users users)
+        public async Task<ActionResult<Time>> PostTime(Time time)
         {
-            _context.Users.Add(users);
+            _context.Times.Add(time);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUsers", new { id = users.Id }, users);
+            return CreatedAtAction("GetTime", new { id = time.Id }, time);
         }
 
-        // DELETE: api/Users/5
+        // DELETE: api/Times/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Users>> DeleteUsers(int id)
+        public async Task<ActionResult<Time>> DeleteTime(int id)
         {
-            var users = await _context.Users.FindAsync(id);
-            if (users == null)
+            var time = await _context.Times.FindAsync(id);
+            if (time == null)
             {
                 return NotFound();
             }
 
-            _context.Users.Remove(users);
+            _context.Times.Remove(time);
             await _context.SaveChangesAsync();
 
-            return users;
+            return time;
         }
 
-        private bool UsersExists(int id)
+        private bool TimeExists(int id)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return _context.Times.Any(e => e.Id == id);
         }
     }
 }

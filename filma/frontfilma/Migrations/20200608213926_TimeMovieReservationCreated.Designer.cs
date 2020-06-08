@@ -4,14 +4,16 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace frontfilma.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class UsersContextModelSnapshot : ModelSnapshot
+    [Migration("20200608213926_TimeMovieReservationCreated")]
+    partial class TimeMovieReservationCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,12 +34,10 @@ namespace frontfilma.Migrations
                     b.Property<string>("Message")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MovieId")
+                    b.Property<int?>("Topic")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MovieId");
 
                     b.ToTable("ChatHistories");
                 });
@@ -127,15 +127,6 @@ namespace frontfilma.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("DataAccess.Models.ChatHistory", b =>
-                {
-                    b.HasOne("DataAccess.Models.Movie", "Movie")
-                        .WithMany("ChatHistories")
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("DataAccess.Models.Movie", b =>

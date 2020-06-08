@@ -12,48 +12,48 @@ namespace frontfilma.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class MoviesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public UsersController(ApplicationDbContext context)
+        public MoviesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Users
+        // GET: api/Movies
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<Movie>>> GetMovies()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Movies.ToListAsync();
         }
 
-        // GET: api/Users/5
+        // GET: api/Movies/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Users>> GetUsers(int id)
+        public async Task<ActionResult<Movie>> GetMovie(int id)
         {
-            var users = await _context.Users.FindAsync(id);
+            var movie = await _context.Movies.FindAsync(id);
 
-            if (users == null)
+            if (movie == null)
             {
                 return NotFound();
             }
 
-            return users;
+            return movie;
         }
 
-        // PUT: api/Users/5
+        // PUT: api/Movies/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsers(int id, Users users)
+        public async Task<IActionResult> PutMovie(int id, Movie movie)
         {
-            if (id != users.Id)
+            if (id != movie.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(users).State = EntityState.Modified;
+            _context.Entry(movie).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace frontfilma.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UsersExists(id))
+                if (!MovieExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace frontfilma.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
+        // POST: api/Movies
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Users>> PostUsers([FromBody]Users users)
+        public async Task<ActionResult<Movie>> PostMovie(Movie movie)
         {
-            _context.Users.Add(users);
+            _context.Movies.Add(movie);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUsers", new { id = users.Id }, users);
+            return CreatedAtAction("GetMovie", new { id = movie.Id }, movie);
         }
 
-        // DELETE: api/Users/5
+        // DELETE: api/Movies/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Users>> DeleteUsers(int id)
+        public async Task<ActionResult<Movie>> DeleteMovie(int id)
         {
-            var users = await _context.Users.FindAsync(id);
-            if (users == null)
+            var movie = await _context.Movies.FindAsync(id);
+            if (movie == null)
             {
                 return NotFound();
             }
 
-            _context.Users.Remove(users);
+            _context.Movies.Remove(movie);
             await _context.SaveChangesAsync();
 
-            return users;
+            return movie;
         }
 
-        private bool UsersExists(int id)
+        private bool MovieExists(int id)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return _context.Movies.Any(e => e.Id == id);
         }
     }
 }

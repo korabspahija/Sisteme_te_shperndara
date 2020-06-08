@@ -6,9 +6,9 @@ namespace DataAccess.Repository
 {
     public class UsersRepository
     {
-        private readonly UsersContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public UsersRepository(UsersContext context)
+        public UsersRepository(ApplicationDbContext context)
         {
             this._context = context;
         }

@@ -12,48 +12,48 @@ namespace frontfilma.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class ReservationsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public UsersController(ApplicationDbContext context)
+        public ReservationsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Users
+        // GET: api/Reservations
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Reservations.ToListAsync();
         }
 
-        // GET: api/Users/5
+        // GET: api/Reservations/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Users>> GetUsers(int id)
+        public async Task<ActionResult<Reservation>> GetReservation(int id)
         {
-            var users = await _context.Users.FindAsync(id);
+            var reservation = await _context.Reservations.FindAsync(id);
 
-            if (users == null)
+            if (reservation == null)
             {
                 return NotFound();
             }
 
-            return users;
+            return reservation;
         }
 
-        // PUT: api/Users/5
+        // PUT: api/Reservations/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsers(int id, Users users)
+        public async Task<IActionResult> PutReservation(int id, Reservation reservation)
         {
-            if (id != users.Id)
+            if (id != reservation.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(users).State = EntityState.Modified;
+            _context.Entry(reservation).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace frontfilma.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UsersExists(id))
+                if (!ReservationExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace frontfilma.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
+        // POST: api/Reservations
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Users>> PostUsers([FromBody]Users users)
+        public async Task<ActionResult<Reservation>> PostReservation(Reservation reservation)
         {
-            _context.Users.Add(users);
+            _context.Reservations.Add(reservation);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUsers", new { id = users.Id }, users);
+            return CreatedAtAction("GetReservation", new { id = reservation.Id }, reservation);
         }
 
-        // DELETE: api/Users/5
+        // DELETE: api/Reservations/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Users>> DeleteUsers(int id)
+        public async Task<ActionResult<Reservation>> DeleteReservation(int id)
         {
-            var users = await _context.Users.FindAsync(id);
-            if (users == null)
+            var reservation = await _context.Reservations.FindAsync(id);
+            if (reservation == null)
             {
                 return NotFound();
             }
 
-            _context.Users.Remove(users);
+            _context.Reservations.Remove(reservation);
             await _context.SaveChangesAsync();
 
-            return users;
+            return reservation;
         }
 
-        private bool UsersExists(int id)
+        private bool ReservationExists(int id)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return _context.Reservations.Any(e => e.Id == id);
         }
     }
 }
